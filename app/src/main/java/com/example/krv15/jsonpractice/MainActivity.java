@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -120,18 +121,18 @@ public class MainActivity extends AppCompatActivity {
 
       @Override
       public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-
-          return new VH(getLayoutInflater().inflate(R.layout.inflate,null));
+          View view= LayoutInflater.from(MainActivity.this).inflate(R.layout.inflate,parent,false);
+          return new VH(view);
       }
 
       @Override
       public void onBindViewHolder(VH holder, int position) {
 
           DetailsModel detailsModel=DetailsModellist.get(position);
-          holder.tv1.setText(detailsModel.getName());
-          holder.tv2.setText(detailsModel.getSurname());
-          holder.tv.setText(detailsModel.getId());
-          holder.tv3.setText(detailsModel.getAge());
+          holder.tv1.setText("Name :"+detailsModel.getName());
+          holder.tv2.setText("SurName :"+detailsModel.getSurname());
+          holder.tv.setText("Id :"+detailsModel.getId());
+          holder.tv3.setText("Age :"+detailsModel.getAge());
           holder.tv.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
