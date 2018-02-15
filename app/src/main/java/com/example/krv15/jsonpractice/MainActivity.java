@@ -4,10 +4,13 @@ package com.example.krv15.jsonpractice;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,10 +50,31 @@ public class MainActivity extends AppCompatActivity {
     Gson gson;
     Request request;
 
+    Toolbar toolbar;
+    SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toolbar =findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setIcon(0);
+
+        CollapsingToolbarLayout ctl=findViewById(R.id.collapse);
+        ctl.setTitle("Example");
+
+        swipeRefreshLayout =findViewById(R.id.swipelayout);
+
+//        swipeRefreshLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//              swipeRefreshLayout.setRefreshing(true);
+//            }
+//        });
 
         rv= (RecyclerView) this.findViewById(R.id.rv);
 
@@ -130,15 +154,15 @@ public class MainActivity extends AppCompatActivity {
 
           DetailsModel detailsModel=DetailsModellist.get(position);
           holder.tv1.setText("Name :"+detailsModel.getName());
-          holder.tv2.setText("SurName :"+detailsModel.getSurname());
-          holder.tv.setText("Id :"+detailsModel.getId());
-          holder.tv3.setText("Age :"+detailsModel.getAge());
-          holder.tv.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  Intent i=new Intent(MainActivity.this,Getdetails.class);
-              }
-          });
+//          holder.tv2.setText("SurName :"+detailsModel.getSurname());
+//          holder.tv.setText("Id :"+detailsModel.getId());
+//          holder.tv3.setText("Age :"+detailsModel.getAge());
+//          holder.tv.setOnClickListener(new View.OnClickListener() {
+//              @Override
+//              public void onClick(View view) {
+//                  Intent i=new Intent(MainActivity.this,Getdetails.class);
+//              }
+//          });
       }
 
       @Override
@@ -154,10 +178,10 @@ public class MainActivity extends AppCompatActivity {
           public VH(View itemView) {
 
               super(itemView);
-              tv=itemView.findViewById(R.id.id);
+ //             tv=itemView.findViewById(R.id.id);
               tv1=itemView.findViewById(R.id.name);
-              tv2=itemView.findViewById(R.id.ccode);
-              tv3=itemView.findViewById(R.id.dcode);
+//              tv2=itemView.findViewById(R.id.ccode);
+//              tv3=itemView.findViewById(R.id.dcode);
           }
       }
   }
