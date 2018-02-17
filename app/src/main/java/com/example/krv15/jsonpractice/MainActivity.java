@@ -37,7 +37,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
 
     RecyclerView rv;
@@ -52,11 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     SwipeRefreshLayout swipeRefreshLayout;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+
+    @Override
+    protected void intitializeViews() {
         toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -137,11 +136,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
     }
 
 
-  public class Adapter extends RecyclerView.Adapter<Adapter.VH> {
+    public class Adapter extends RecyclerView.Adapter<Adapter.VH> {
 
       @Override
       public VH onCreateViewHolder(ViewGroup parent, int viewType) {
